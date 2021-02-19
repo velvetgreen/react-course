@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import Message from './components/message'
+import MessageField from './components/MessageField'
 
 
 function App() {
   return (
     <div className='wrapper'>
       <h1>React app</h1>
-      <Message />
+      <MessageField />
     </div>
   );
 }

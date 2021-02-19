@@ -1,20 +1,12 @@
-import React, { useState } from 'react';
-export default function Message () {
+import React, { useState,useEffect } from 'react';
 
-   const [message, setMessage] = useState('Сейчас будет приемлемо');
-
-   function showMessage () {
-     setMessage('Стало приемлемо');
-   }
-
-   return (
-    <>
-      <button 
-        type='button' 
-        className='message-button'
-        onClick={showMessage}
-      >Get Message</button>
-      <p>{message}</p>
-    </>
-   )
- }
+export default function Message ({text,author}) {
+  return (
+      <>
+        <div> 
+          <strong> {author}</strong>
+          <p>{text}</p>
+        </div>
+      </>
+  );
+}
