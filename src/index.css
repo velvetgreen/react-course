@@ -45,3 +45,11 @@ code {
 .chat-list {
   width: 30%;
 }
+.newchat {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+.newchat-button {
+  color: rgba(87, 63, 79, 50);
+}

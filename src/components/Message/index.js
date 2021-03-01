@@ -3,14 +3,11 @@ import Fab from '@material-ui/core/Fab';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-
 export default function Message ({
   text,
   author,
-  messagesState,
-  index
+  onDelete,
 }) {
-  const [messages, setMessages]  = messagesState;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -22,10 +19,10 @@ export default function Message ({
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleDelete = () => {
-    messages.splice(index, 1);
-    setMessages([...messages]);
-  }
+  // const handleDelete = () => {
+  //   messages.splice(index, 1);
+  //   setMessages([...messages]);
+  // }
   const handleEdit = () => {
     //to do 
   }
@@ -49,7 +46,7 @@ export default function Message ({
               onClick={handleEdit}
             >Edit</MenuItem>
             <MenuItem 
-              onClick={handleDelete}
+              onClick={onDelete}
             >Delete</MenuItem>
           </Menu>
         </div>

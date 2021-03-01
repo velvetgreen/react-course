@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Message from './Message';
+import React, { useState, useEffect } from 'react';
+import Message from 'components/Message';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 export default function MessageField () {
 
-  const messagesState = useState([]);
-  const [messages, setMessages]  = messagesState;
+  const [messages, setMessages]  = useState([]);
   const [userMessage, setUserMessage] = useState('');
   // const inputRef = useRef()
 
@@ -15,7 +14,7 @@ export default function MessageField () {
       setMessages([...messages, {text: userMessage, author: 'you'} ]);
     }
   }
-
+  
   const handleClick = () => {
     sendMessage()
   }
@@ -28,7 +27,10 @@ export default function MessageField () {
   const handleChange = (e) => {
     setUserMessage(e.target.value);
   }
-
+  const handleMessageDelete = (index) => () => {
+    messages.splice(index, 1);
+    setMessages([...messages]);
+  }
   useEffect(() => {
     let botMessage;
     let messageToReply = userMessage.toLowerCase()
@@ -60,15 +62,14 @@ export default function MessageField () {
     
     setUserMessage('');
     // inputRef.current.value = '';
-  }, [messages]);
+  }, [messages]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
     <div className='messages'>
         {messages.map((message, index) => (
           <Message 
-            messagesState={messagesState}
-            index={index}
+            onDelete={handleMessageDelete(index)}
             key={index} 
             text={message.text} 
             author={message.author} 
@@ -89,6 +90,7 @@ export default function MessageField () {
           />
 
       </div>
+      
       <Button 
         variant="contained" 
         color="primary"
