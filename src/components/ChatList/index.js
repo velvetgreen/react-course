@@ -4,54 +4,24 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
-import { Link } from "react-router-dom";
-import { useParams, useRouteMatch } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
-export default function ChatList () {
+export default function ChatList ({
+    chatId,
+    chats,
+    onChatAdd,
+}) {
     const params = useParams();
-    const match = useRouteMatch();
-    const [chats, setChats] = useState([
-        {
-          id: 1,
-          name: "Chat 1",
-          messageList: ['id1'],
-        },
-        {
-          id: 2,
-          name: "Chat 2",
-          messageList: [{ author: 'me', text: "message 2" }],
-        },
-        {
-          id: 3,
-          name: "Chat 3",
-          messageList: [
-            { author: 'me', text: "message 3" },
-            { author: 'bot', text: "how you doin" },
-          ],
-        },
-      ]);
-
-    const selectedChat = useMemo(
-        () => chats.find((chat) => chat.id === params.chatId),
-        [params, chats]
-      );
-    
-    const selectedChatIndex = useMemo(
-        () => chats.findIndex((chat) => chat.id === params.chatId),
-        [params, chats]
-      );
 
     const [value, setValue] = React.useState(2);
     const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  
+        setValue(newValue);
+    };
 
-  const handleSwitchChats = () => {
-    setChats([...chats, chats.length+1 ]);
-  }
+
     return (
         <>
+        
             <Paper square>
                 <Tabs
                     orientation="vertical"
@@ -60,12 +30,16 @@ export default function ChatList () {
                     textColor="primary"
                     onChange={handleChange}
                     aria-label="disabled tabs example"
+                    // chats={chats}
+
                 >
-                    {chats.map((chat, index) => (
-                        <Link to={`/chats/${chat.id}`}>
+                    {Object.keys(chats).map((chatId, index) => (
+                        <Link to={`/chats/${chatId}`} key={index}>
                             <Tab
-                            key={index}  
-                            label={`Chat ${index+1}`}
+                                style={{ color: chatId === +params.chatId ? "#000000" : "grey" }}
+                                key={index}  
+                                label={`Chat ${index+1}`}
+                                chats={chats}
                             />
                         </Link>
                     ))}
@@ -76,7 +50,7 @@ export default function ChatList () {
             <Button 
                 className='newchat-button'
                 variant="outlined"
-                onClick={handleSwitchChats}
+                onClick={onChatAdd}
                 >New Chat
                 <AddIcon />
             </Button>

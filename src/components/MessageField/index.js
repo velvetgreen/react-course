@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import Message from 'components/Message';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { useParams, useRouteMatch } from "react-router-dom";
 
-export default function MessageField () {
-
-  const [messages, setMessages]  = useState([]);
+export default function MessageField ({
+  onMessageDelete,
+  onMessageSend,
+  messages,
+}) {
   const [userMessage, setUserMessage] = useState('');
-  // const inputRef = useRef()
 
   const sendMessage = () => {
     if (userMessage !== '') {
-      setMessages([...messages, {text: userMessage, author: 'you'} ]);
+      onMessageSend({text: userMessage, author: 'you'});
     }
   }
   
@@ -27,14 +29,11 @@ export default function MessageField () {
   const handleChange = (e) => {
     setUserMessage(e.target.value);
   }
-  const handleMessageDelete = (index) => () => {
-    messages.splice(index, 1);
-    setMessages([...messages]);
-  }
+
   useEffect(() => {
     let botMessage;
     let messageToReply = userMessage.toLowerCase()
-    // const userMessage = inputRef.current.value.toLowerCase();
+
     switch(true) {
       case messageToReply.includes('hi'):
         botMessage = 'Hello, leatherbag';
@@ -54,27 +53,29 @@ export default function MessageField () {
       default: 
         botMessage = 'Sorry wat?';
     }
+    
     setTimeout(() => {
-      if (messages.length > 0 && messages[messages.length - 1].author === 'you'){
-        setMessages([...messages, {text: botMessage, author: 'Bot'} ]);
+      if (messages.length > 0 && messages[messages.length - 1].author === 'you') {
+        onMessageSend({text: botMessage, author: 'Bot'});
       }
     }, 2000);
-    
     setUserMessage('');
-    // inputRef.current.value = '';
   }, [messages]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
     <div className='messages'>
-        {messages.map((message, index) => (
-          <Message 
-            onDelete={handleMessageDelete(index)}
-            key={index} 
-            text={message.text} 
-            author={message.author} 
-          />
-        ))}
+        {messages.map((message, index) => {
+          return message && (
+            <Message 
+              onDelete={onMessageDelete(index)}
+              key={index} 
+              text={message.text} 
+              author={message.author} 
+              id={message.id}
+            />
+          )
+        })}
 
       </div>
       <div className="controls">
