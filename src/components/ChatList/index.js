@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import { useParams, Link } from "react-router-dom";
 
 export default function ChatList ({
-    chatId,
+    selectedChatID,
     chats,
     onChatAdd,
 }) {
@@ -30,13 +30,12 @@ export default function ChatList ({
                     textColor="primary"
                     onChange={handleChange}
                     aria-label="disabled tabs example"
-                    // chats={chats}
 
                 >
                     {Object.keys(chats).map((chatId, index) => (
-                        <Link to={`/chats/${chatId}`} key={index}>
+                        <Link to={`/chats/${chatId}`} key={index} className='chat-link'>
                             <Tab
-                                style={{ color: chatId === +params.chatId ? "#000000" : "grey" }}
+                                style={{ color: selectedChatID === params.chatId ? "black" : "grey" }}
                                 key={index}  
                                 label={`Chat ${index+1}`}
                                 chats={chats}

@@ -7,9 +7,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-// import Router from '../../Router'
-
+import { useSelector } from 'react-redux';
+// import ProfilePage from '../pages/Profile';
 function TabPanel(props) {
+  
   const { children, value, index, ...other } = props;
 
   return (
@@ -56,30 +57,23 @@ export default function Nav() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const user = useSelector(state => state.user);
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Link to="/">
-            <Tab label="Home" {...a11yProps(0)} />
+          <Link to="/" className='tab-link'>
+            <Tab  label="Home" {...a11yProps(0)} />
           </Link>
-          <Link to="/chats">
+          <Link to="/chats" className='tab-link'>
             <Tab label="Chats" {...a11yProps(1)} />
           </Link>
-          <Link to="/profile">
-            <Tab label="Profile" {...a11yProps(2)} />
+          <Link to="/profile" className='tab-link'>
+            <Tab label={user.name} {...a11yProps(2)} />
           </Link>
         </Tabs>
       </AppBar>
-      {/* <TabPanel value={value} index={0}>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Chats
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Profile
-      </TabPanel> */}
     </div>
   );
 }

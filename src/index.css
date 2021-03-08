@@ -53,3 +53,15 @@ code {
 .newchat-button {
   color: rgba(87, 63, 79, 50);
 }
+.profile-main {
+  display: flex;
+  flex-direction: column;
+}
+.tab-link {
+  color:white;
+  text-decoration: none;
+}
+.chat-link {
+  text-decoration: none;
+  color: black;
+}
