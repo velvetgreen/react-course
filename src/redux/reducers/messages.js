@@ -3,14 +3,13 @@ import {
     DELETE_MESSAGE
 } from 'redux/actions/messages';
 
-const initialState = {};
+const initialState = {
+};
 
 export default function messagesReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_MESSAGE: {
-            // const newState = {...state};
-            const {messageID,message} = action;
-            // newState[messageID] = message;
+            const {messageID, message} = action;
             
             return {
                 ...state,

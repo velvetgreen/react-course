@@ -65,3 +65,10 @@ code {
   text-decoration: none;
   color: black;
 }
+.blink {
+  animation: blink 2s infinite; 
+ }
+ @keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0;  }
+ }

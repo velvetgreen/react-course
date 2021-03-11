@@ -19,10 +19,7 @@ export default function Message ({
   const handleClose = () => {
     setAnchorEl(null);
   };
-  // const handleDelete = () => {
-  //   messages.splice(index, 1);
-  //   setMessages([...messages]);
-  // }
+  
   const handleEdit = () => {
     //to do 
   }

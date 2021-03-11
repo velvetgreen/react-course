@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Message from 'components/Message';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { useParams, useRouteMatch } from "react-router-dom";
 
 export default function MessageField ({
   onMessageDelete,
@@ -53,14 +52,11 @@ export default function MessageField ({
       default: 
         botMessage = 'Sorry wat?';
     }
-    
-    setTimeout(() => {
-      if (messages.length > 0 && messages[messages.length - 1].author === 'you') {
-        onMessageSend({text: botMessage, author: 'Bot'});
-      }
-    }, 2000);
+    if (messages.length > 0 && messages[messages.length - 1].author === 'you') {
+      onMessageSend({text: botMessage, author: 'Bot'});
+    }
     setUserMessage('');
-  }, [messages]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [messages.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

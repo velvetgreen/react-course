@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -10,6 +10,7 @@ export default function ChatList ({
     selectedChatID,
     chats,
     onChatAdd,
+    selectedChat
 }) {
     const params = useParams();
 
@@ -17,7 +18,6 @@ export default function ChatList ({
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
 
     return (
         <>
@@ -33,12 +33,16 @@ export default function ChatList ({
 
                 >
                     {Object.keys(chats).map((chatId, index) => (
-                        <Link to={`/chats/${chatId}`} key={index} className='chat-link'>
+                        <Link 
+                        to={`/chats/${chatId}`} 
+                        key={index} 
+                        className={'chat-link'}
+                        >
                             <Tab
-                                style={{ color: selectedChatID === params.chatId ? "black" : "grey" }}
                                 key={index}  
                                 label={`Chat ${index+1}`}
                                 chats={chats}
+                                className={chats[chatId].newMessage ? 'blink' : null}
                             />
                         </Link>
                     ))}

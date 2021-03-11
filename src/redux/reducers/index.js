@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-
 import chatsReducer from './chats';
 import messagesReducer from './messages';
 import userReducer from './user';

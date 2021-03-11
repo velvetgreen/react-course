@@ -1,6 +1,8 @@
 export const CHAT_ADD = 'CHAT_ADD';
 export const CHAT_ADD_MESSAGE = 'CHAT_ADD_MESSAGE';
 export const CHAT_DELETE_MESSAGE = 'CHAT_DELETE_MESSAGE';
+export const CHAT_DISABLE_BLINK = 'CHAT_DISABLE_BLINK';
+
 
 export const addChat = () => ({
     type: CHAT_ADD,
@@ -19,5 +21,11 @@ export const deleteChatMessage = (chatID, messageID) => {
         type: CHAT_DELETE_MESSAGE,
         chatID,
         messageID
+    }
+}
+export const disableChatBlink = (chatID) => {
+    return {
+        type: CHAT_DISABLE_BLINK,
+        chatID
     }
 }

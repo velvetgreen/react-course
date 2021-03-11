@@ -7,6 +7,8 @@ import ProfilePage from 'pages/Profile';
 import HomePage from 'pages/Home';
 import ChatsPage from 'pages/Chats';
 import configureStore from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react'
+
 
 const theme = createMuiTheme({
   palette: {
@@ -14,11 +16,12 @@ const theme = createMuiTheme({
   },
 });
 
-const store = configureStore();
+const {store,persistor} = configureStore();
 
 function App() {
   return (
     <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <div className='wrapper'>
@@ -39,6 +42,7 @@ function App() {
           </div>
         </BrowserRouter>
       </ThemeProvider>
+    </PersistGate>
     </Provider>
   );
 }
