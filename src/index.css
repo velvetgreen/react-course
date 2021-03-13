@@ -1,4 +1,4 @@
-/* body {
+body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,39 +10,38 @@
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-} */
+}
 .wrapper {
-  color: white;
-  width: 400px;
+  max-width: 800px;
   padding: 10px;
   margin-top: 10px;
-  background-color: darkgray;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgb(70, 67, 67);
+  background-color: rgba(237, 228, 234,15)
 }
-.message-button {
-  font-weight: bold;
-  text-transform: uppercase;
-  width: 104px;
-  height: 46px;
-  border-radius: 23px;
-  background-color: #f16d7f;
-  border: none;
-  cursor: pointer;
-  color: white;
-  outline: none;
-}
+
 .controls {
   display: flex;
   flex-direction: column;
 }
-.input {
-  display:block;
-  max-width:100%;
-  line-height:1.5;
-  padding:15px 15px 30px;
-  border-radius:3px;
-  border:1px solid darkslategray;
-  margin-bottom: 20px;
+.author{
+  color: rgba(189, 136, 161, 50);
+}
+.heading{
+  color: rgba(87, 63, 79, 50);
+  text-align: center;
+}
+.message {
+  color: rgba(87, 63, 79, 50);
+}
+.main {
+  display: flex;
+  padding: 20px;
+}
+.chat-block {
+  margin-left: 20px;
+  width: 70%;
+}
+.chat-list {
+  width: 30%;
 }

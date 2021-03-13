@@ -1,11 +1,57 @@
-import React, { useState,useEffect } from 'react';
+import React from 'react';
+import Fab from '@material-ui/core/Fab';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
-export default function Message ({text,author}) {
+
+export default function Message ({
+  text,
+  author,
+  messagesState,
+  index
+}) {
+  const [messages, setMessages]  = messagesState;
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleDelete = () => {
+    messages.splice(index, 1);
+    setMessages([...messages]);
+  }
+  const handleEdit = () => {
+    //to do 
+  }
   return (
       <>
         <div> 
-          <strong> {author}</strong>
-          <p>{text}</p>
+          <Fab
+            onContextMenu={handleClick}
+            variant="extended" 
+            style={{height:'auto', marginBottom:15}}>
+            <strong className='author'> {author}:  </strong>
+            <div className='message'>{text}</div>
+          </Fab>
+          <Menu 
+            open={open}
+            anchorEl={anchorEl}
+            keepMounted
+            onClose={handleClose}
+          >
+            <MenuItem
+              onClick={handleEdit}
+            >Edit</MenuItem>
+            <MenuItem 
+              onClick={handleDelete}
+            >Delete</MenuItem>
+          </Menu>
         </div>
       </>
   );
