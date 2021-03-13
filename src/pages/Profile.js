@@ -10,6 +10,7 @@ export default function ProfilePage () {
         <Layout>
             <div className='profile-main'>
             <h3>Profile page</h3>
+            <img src='https://placekitten.com/200/200' alt='pretty-kitty'></img>
             <ul>
                 <li>Name: {user.name}</li>
                 <li>Age: {user.age}</li>

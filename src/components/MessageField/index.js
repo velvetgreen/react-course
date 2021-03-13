@@ -11,7 +11,7 @@ export default function MessageField ({
   const [userMessage, setUserMessage] = useState('');
 
   const sendMessage = () => {
-    if (userMessage !== '') {
+    if (userMessage) {
       onMessageSend({text: userMessage, author: 'you'});
     }
   }
