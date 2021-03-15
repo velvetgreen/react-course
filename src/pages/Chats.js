@@ -49,6 +49,7 @@ export default function ChatPage () {
     const onChatAdd = () => {
         dispatch(addChat());
     }
+
     return (
         <Layout>
             <div className='chat-list'>

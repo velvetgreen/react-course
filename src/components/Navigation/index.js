@@ -21,6 +21,7 @@ function TabPanel(props) {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}
+
     >
       {value === index && (
         <Box p={3}>
@@ -63,7 +64,7 @@ export default function Nav() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" >
           <Link to="/" className='tab-link'>
             <Tab  label="Home" {...a11yProps(0)} />
           </Link>
